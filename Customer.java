@@ -1,7 +1,7 @@
 import java.util.*;
 public class Customer extends User{
-    CheckingAccount checking = new CheckingAccount();
-    SavingsAccount savings = new SavingsAccount();
+    protected CheckingAccount checking = new CheckingAccount();
+    protected SavingsAccount savings = new SavingsAccount();
 
     public static void main(String[] args) {
         Customer customer = new Customer();

@@ -13,8 +13,12 @@ User.class: User.java HasMenu.class
 Customer.class: Customer.java User.class HasMenu.class CheckingAccount.class SavingsAccount.class
 	javac Customer.java
 
-run: Customer.class
-	java Customer
+Admin.class: User.class HasMenu.class
+	javac Admin.java
+Bank.class: Admin.class Customer.java User.class HasMenu.class CheckingAccount.class SavingsAccount.class
+	javac Bank.java
+run: Bank.class
+	java Bank
 
 clean:
 	rm *.class

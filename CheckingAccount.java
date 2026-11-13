@@ -81,7 +81,9 @@ public class CheckingAccount implements HasMenu{
         System.out.println("Making a withdrawal...");
         System.out.println("How much would you like to withdraw?");
         double amount = getDouble();
-        balance -= amount;
+        if(amount <= balance) {balance -= amount;}
+        else {System.out.println("You can't withdraw that much!");}
+        
         System.out.println("New Balance:"+getBalanceString());
     }
 }

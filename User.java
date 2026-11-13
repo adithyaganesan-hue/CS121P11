@@ -11,10 +11,10 @@ public abstract class User implements HasMenu, Serializable{
         System.out.print("PIN: ");
         String uPIN = scanner.next();
 
-        return uName.equals(uPIN);
+        return (uName.equals(userName) && uPIN.equals(PIN));
     }
-    public boolean login(String userName, String PIN){
-        return userName.equals(PIN);
+    public boolean login(String uName, String uPIN){
+        return (uName.equals(userName) && uPIN.equals(PIN));
     }
 
     public void setUserName(String userName) {
