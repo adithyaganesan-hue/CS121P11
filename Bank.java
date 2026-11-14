@@ -10,8 +10,10 @@ public class Bank implements HasMenu{
         admin = new Admin();
         customers = new ArrayList<>();
 
-        this.loadSampleCustomers();
-        this.saveCustomers();
+        if(!new File("customers.ser").exists()){
+            this.loadSampleCustomers();
+            this.saveCustomers();
+        }
 
         this.loadCustomers();
         this.start();
@@ -63,11 +65,13 @@ public class Bank implements HasMenu{
                             System.out.println(c.getReport());
                         }
                         break;
-                    case "2": 
+                    case "2":
                         addUser();
+                        saveCustomers();
                         break;
                     case "3":
                         applyInterest();
+                        saveCustomers();
                         break;
                     default:
                         System.out.println("Invalid Input");
@@ -101,15 +105,17 @@ public class Bank implements HasMenu{
         for(Customer c : customers){
             if(c.login(name,PIN)){
                 c.start();
+                saveCustomers();
+                return;
             }
         }
     }
     public void loadCustomers(){
         try (FileInputStream fileIn = new FileInputStream("customers.ser");
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            
+
             customers = (ArrayList<Customer>) in.readObject();
-            
+
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -117,10 +123,9 @@ public class Bank implements HasMenu{
     public void saveCustomers(){
         try (FileOutputStream fileOut = new FileOutputStream("customers.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            
+
             out.writeObject(customers);
-            System.out.println("ArrayList saved successfully.");
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }

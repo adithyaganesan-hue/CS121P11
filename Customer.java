@@ -31,7 +31,6 @@ public class Customer extends User{
     }
     @Override 
     public void start(){
-        if(login()){
             boolean keepGoing = true;
             while(keepGoing){
                 String userInput = menu();
@@ -52,7 +51,6 @@ public class Customer extends User{
                         System.out.println("Invalid input");
                 }
             }
-        }
     }
     //unsure as to what the functionality of getReport needed to be
     @Override
